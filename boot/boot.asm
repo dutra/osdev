@@ -18,10 +18,10 @@ loop:
    jmp   loop
 
    ;; include files
-   %include "print_string_rm.asm"
-   %include "gdt.asm"
-   %include "disk_load.asm"
-   %include "switch_to_pm.asm"
+   %include "boot/print_string_rm.asm"
+   %include "boot/gdt.asm"
+   %include "boot/disk_load.asm"
+   %include "boot/switch_to_pm.asm"
 
    [bits 16]
 load_kernel:
@@ -34,7 +34,7 @@ load_kernel:
    ret
    
    [bits 32]
-   %include "print_string_pm.asm"
+   %include "boot/print_string_pm.asm"
 
 BEGIN_PM:
 
