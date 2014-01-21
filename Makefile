@@ -1,6 +1,6 @@
 CC = gcc
-C_SOURCES = $(wildcard kernel/*.c drivers/*.c)
-HEADERS = $(wildcard kernel/*.h drivers/*.h)
+C_SOURCES = $(wildcard kernel/*.c kernel/asm/*.c drivers/*.c)
+HEADERS = $(wildcard kernel/*.h kernel/asm/*.h drivers/*.h)
 OBJ = ${C_SOURCES:.c=.o}
 CFLAGS = -Wall -m32 -ffreestanding
 LFLAGS = -melf_i386 -Ttext 0x1000 --oformat binary
@@ -20,11 +20,11 @@ boot.bin: boot/boot.asm
 	nasm $< -f bin -o $@
 
 kernel.bin: kernel/kernel_entry.o ${OBJ}
-	ld ${LFLAGS} -o $@ $^
+	ld ${LFLAGS} $^ -o $@
 
-${OBJ} : ${C_SOURCES} ${HEADERS}
+%.o: %.c ${HEADERS}
 	${CC} ${CFLAGS} -c $< -o $@
 
 clean:
 	rm -rf *.bin *.dis *.o os-image
-	rm -rf kernel/*.o boot/*.bin drivers/*.o16bit/I
+	rm -rf kernel/*.o kernel/asm/*.o boot/*.bin drivers/*.o
