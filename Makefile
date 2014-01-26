@@ -1,25 +1,28 @@
 CC = gcc
-C_SOURCES = $(wildcard kernel/*.c kernel/asm/*.c drivers/*.c)
-HEADERS = $(wildcard kernel/*.h kernel/asm/*.h drivers/*.h)
+C_SOURCES = $(wildcard *.c)
+HEADERS = $(wildcard include/*.h *.h)
 OBJ = ${C_SOURCES:.c=.o}
-CFLAGS = -Wall -m32 -ffreestanding
+CINCLUDE = include/
+CFLAGS = -Wall -m32 -ffreestanding -g -Iinclude/ # -fomit-frame-pointer -finline-functions -nostdinc -fno-builtin
 LFLAGS = -melf_i386 -Ttext 0x1000 --oformat binary
 
 all: os-image
 
 run: all
 	qemu-system-i386 -hda os-image
+debug: all
+	qemu-system-i386 -s -S -hda os-image
 
 os-image: boot.bin kernel.bin
 	cat $^ > os-image
 
-kernel/kernel_entry.o : kernel/kernel_entry.asm
+kernel_entry.o : kernel_entry.asm
 	nasm $< -f elf -o $@
 
 boot.bin: boot/boot.asm
 	nasm $< -f bin -o $@
 
-kernel.bin: kernel/kernel_entry.o ${OBJ}
+kernel.bin: kernel_entry.o ${OBJ}
 	ld ${LFLAGS} $^ -o $@
 
 %.o: %.c ${HEADERS}
@@ -27,4 +30,4 @@ kernel.bin: kernel/kernel_entry.o ${OBJ}
 
 clean:
 	rm -rf *.bin *.dis *.o os-image
-	rm -rf kernel/*.o kernel/asm/*.o boot/*.bin drivers/*.o
+	rm -rf kernel/*.o kernel/asm/*.o boot/*.bin drivers/*.o lib/*.o

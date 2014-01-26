@@ -1,4 +1,3 @@
-
 #ifndef SCREEN_H
 #define SCREEN_H
 
@@ -8,14 +7,16 @@
 
 // Attribute byte for our default colour scheme .
 #define WHITE_ON_BLACK 0x0f
-
+#define GREEN_ON_BLACK 0x02
 // Screen device I / O ports
 #define REG_SCREEN_CTRL 0x3D4
 #define REG_SCREEN_DATA 0x3D5
 
-void print_char(char character, int col, int row, char attribute_byte);
-int get_screen_offset(int col, int row);
-int get_cursor ();
-void set_cursor (int offset);
+void print_string(char *string, int row, int col);
+void print_char(char character, int row, int col, char attribute_byte);
+int get_screen_offset(int row, int col);
+int get_cursor();
+void set_cursor(unsigned int offsetx);
+void clear_screen();
 
 #endif /* SCREEN_H */

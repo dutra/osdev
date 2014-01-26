@@ -5,6 +5,9 @@
    
    [extern main]
 
-   call main
+   global _start
+
+_start:
+   call  main
 
    jmp $
