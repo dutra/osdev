@@ -21,10 +21,15 @@ os-image: boot.bin kernel.bin
 kernel_entry.o : kernel_entry.asm
 	nasm $< -f elf -o $@
 
+interrupts.o : interrupts.asm
+	nasm $< -f elf -o $@
+idt_flush.o : idt_flush.asm
+	nasm $< -f elf -o $@
+
 boot.bin: boot/boot.asm
 	nasm $< -f bin -o $@
 
-kernel.bin: kernel_entry.o ${OBJ}
+kernel.bin: kernel_entry.o idt_flush.o interrupts.o ${OBJ}
 	ld ${LFLAGS} $^ -o $@
 
 %.o: %.c ${HEADERS}

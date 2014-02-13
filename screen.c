@@ -3,14 +3,11 @@
 #include <asm.h>
 
 void puts(char *string) {
-    print_string(string, -1, -1);
-    print_char('\n', -1, -1, 0);
+    print_string(string);
+    print_string("\n");
 }
 
-void print_string(char *string, int row, int col) {
-  if (col >= 0 && row >= 0)
-    set_cursor(get_screen_offset(col, row));
-
+void print_string(char *string) {
   int i=0;
   while(string[i] != 0) {
     

@@ -1,13 +1,14 @@
 #include <types.h>
 #include <screen.h>
 #include <lib.h>
+#include <idt.h>
 
 void main() {
-  char string[10];
+  init_idt();
 
+  print_string("\n");
   
-  int i, j;
-  
-  
+  asm volatile ("int $0x3");
+  /* asm volatile ("int $0x3"); */
   while(1) ; // infinite loop
 }
