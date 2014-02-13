@@ -11,6 +11,9 @@ print_string_loop:
    jmp   print_string_loop
    
 print_string_exit:
+   mov   al, 0x0D
+   call print_char
+   
    mov   al, 0x0A               ; new line
    call  print_char
 
