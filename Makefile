@@ -10,6 +10,8 @@ all: os-image
 
 run: all
 	qemu-system-i386 -hda os-image
+run-nox: all
+	qemu-system-i386 -curses -hda os-image
 debug: all
 	qemu-system-i386 -s -S -hda os-image
 
