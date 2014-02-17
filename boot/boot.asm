@@ -1,16 +1,21 @@
    [org  0x7c00]
-   
-KERNEL_OFFSET equ 0x1000        ; We will load the kernel here
 
+STACK_16 equ 0x9000
+KERNEL_SEG_16 equ 0x4000        ; We need to use segments to reach KERNEL_OFFSET_32 in real mode
+KERNEL_OFFSET_16 equ 0x0
+
+STACK_32 equ 0x3ffff
+KERNEL_OFFSET_32 equ 0x40000    ; We will load the kernel here
+   
    mov   [BOOT_DRIVE], dl       ; BIOS stores our boot drive in dl, so let's save it for later use
    
-   mov   bp, 0x9000             ; set stack
+   mov   bp, STACK_16             ; set stack
    mov   sp, bp
 
    mov   bx, MSG_REAL_MODE
    call  print_string
 
-   call load_kernel
+   call  load_kernel
 
    call  switch_to_pm
 
@@ -27,8 +32,11 @@ loop:
 load_kernel:
    mov bx, MSG_LOAD_KERNEL
    call print_string
-   mov bx, KERNEL_OFFSET
-   mov dh, 9
+
+   mov ax, 0x4000
+   mov es, ax
+   mov bx, KERNEL_OFFSET_16
+   mov dh, 8
    mov dl, [BOOT_DRIVE]
    call disk_load
    ret
@@ -41,7 +49,7 @@ BEGIN_PM:
    mov   ebx, MSG_PROT_MODE
    call  print_string_pm
 
-   call KERNEL_OFFSET
+   call  CODE_SEG:KERNEL_OFFSET_32
    
    jmp   $
 

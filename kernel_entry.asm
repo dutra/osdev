@@ -2,12 +2,10 @@
 ;;; It makes sure that we call main
    
    [bits 32]
-   
    [extern main]
 
-   global _start
 
-_start:
+start:
    call  main
 
    jmp $

@@ -13,7 +13,7 @@ void main() {
   /* asm volatile ("int $0x3"); */
 
   // let's enable interrupts
-  init_timer(50);
+  //  init_timer(50);
   
   while(1) ; // infinite loop
 }
