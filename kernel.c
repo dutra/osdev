@@ -3,6 +3,7 @@
 #include <lib.h>
 #include <idt.h>
 #include <timer.h>
+#include <keyboard.h>
 #include <isr.h>
 
 void main() {
@@ -14,6 +15,12 @@ void main() {
   asm volatile ("int $0x3");
   /* asm volatile ("int $0x3"); */
 
+  init_keyboard();
+
+
+  
+  /* asm volatile("int $0x2"); */
+  
   // let's enable interrupts
   //  init_timer(50);
   
