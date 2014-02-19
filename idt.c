@@ -33,6 +33,12 @@ void init_idt()
   idt_set_gate(1, (uint32_t)isr1 , 0x08, 0x8E);
   idt_set_gate(2, (uint32_t)isr2 , 0x08, 0x8E);
   idt_set_gate(3, (uint32_t)isr3 , 0x08, 0x8E);
+  idt_set_gate(4, (uint32_t)isr4 , 0x08, 0x8E);
+  idt_set_gate(5, (uint32_t)isr5 , 0x08, 0x8E);
+  idt_set_gate(6, (uint32_t)isr6 , 0x08, 0x8E);
+  idt_set_gate(7, (uint32_t)isr7 , 0x08, 0x8E);
+  idt_set_gate(8, (uint32_t)isr8 , 0x08, 0x8E);
+  idt_set_gate(9, (uint32_t)isr9 , 0x08, 0x8E);
 
   idt_set_gate(32, (uint32_t)irq0, 0x08, 0x8E);
   idt_set_gate(33, (uint32_t)irq1, 0x08, 0x8E);

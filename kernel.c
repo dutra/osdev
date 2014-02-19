@@ -3,10 +3,12 @@
 #include <lib.h>
 #include <idt.h>
 #include <timer.h>
+#include <isr.h>
 
 void main() {
   init_idt();
-
+  init_register_isrs();
+  
   print_string("\n");
   
   asm volatile ("int $0x3");

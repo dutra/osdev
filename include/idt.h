@@ -31,6 +31,12 @@ extern void isr0();
 extern void isr1();
 extern void isr2();
 extern void isr3();
+extern void isr4();
+extern void isr5();
+extern void isr6();
+extern void isr7();
+extern void isr8();
+extern void isr9();
 
 // External references to IRQs implemented in assembly
 extern void irq0();
