@@ -8,8 +8,7 @@ static void idt_set_gate(uint8_t num, uint32_t offset, uint16_t selector, uint8_
 idt_entry_t idt_entries[256];
 idt_ptr_t   idt_ptr;
 
-void init_idt()
-{
+void init_idt() {
 
   // Remap the irq table.
   outb(0x20, 0x11);
