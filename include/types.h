@@ -11,6 +11,10 @@ typedef unsigned int uint32_t;
 typedef long long int64_t;
 typedef unsigned long long uint64_t;
 
+typedef uint8_t bool;
+#define true 1;
+#define false 0;
+
 // size_t is used for memory object sizes.
 typedef uint32_t size_t;
 
