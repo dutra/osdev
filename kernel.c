@@ -16,10 +16,8 @@ void main() {
   /* asm volatile ("int $0x3"); */
 
   init_keyboard();
-
-
   
-  /* asm volatile("int $0x2"); */
+  asm volatile("int $0x8");
   
   // let's enable interrupts
   //  init_timer(50);

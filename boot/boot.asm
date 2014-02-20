@@ -36,7 +36,7 @@ load_kernel:
    mov ax, 0x4000
    mov es, ax
    mov bx, KERNEL_OFFSET_16
-   mov dh, 10
+   mov dh, 11
    mov dl, [BOOT_DRIVE]
    call disk_load
    ret

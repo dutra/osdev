@@ -3,6 +3,7 @@
 #include <screen.h>
 #include <types.h>
 #include <asm.h>
+#include <panic.h>
 
 isr_t interrupt_handlers[256];
 
@@ -42,7 +43,7 @@ void init_register_isrs() {
   register_interrupt_handler(5, &print_interrupt_number);
   register_interrupt_handler(6, &print_interrupt_number);
   register_interrupt_handler(7, &print_interrupt_number);
-  register_interrupt_handler(8, &print_interrupt_number);
+  register_interrupt_handler(8, &panic);
   register_interrupt_handler(9, &print_interrupt_number);
 }
 
