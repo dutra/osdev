@@ -11,11 +11,13 @@ Progress
 
 - [X] Booloader
 - [X] Screen driver
-- [ ] Keyboard driver
 - [X] Partial Interrupt handler
 - [X] Partial IRQ handler
 - [X] Timed interrupt with PIT
-- [ ] Paging handler
+- [X] Keyboard Interrupt handler
+- [ ] Keyboard driver
+- [X] Flat Paging
+- [ ] Memory handler
 - [ ] Multitasking
 - [ ] VFS
 - [ ] File system
@@ -35,6 +37,17 @@ where *sdX* is your floppy disk or hard drive device name. However, if you do no
 ```
 	$ make run
 ```
+
+Debugging
+---------
+In order to debug the kernel, we can use *qemu*+*gdb*.
+You can run
+```
+	$ make debug
+```
+to start *qemu* in debugging mode, with the processor stopped. It will wait for a *gdb* connection, which can be established with `target remote :1234` typed in *gdb*.
+
+
 License
 ---------
 [The MIT License (MIT)](LICENSE)
@@ -47,4 +60,7 @@ Learning Material
 - [Writing a Simple Operational System](http://www.cs.bham.ac.uk/~exr/lectures/opsys/10_11/lectures/os-dev.pdf) by Nick Blundell
 - [James Molloy's Kernel Development Tutorials](http://www.jamesmolloy.co.uk/tutorial_html/index.html)
 - [OSDev.org wiki](http://wiki.osdev.org/)
-- [Bona fide os developer](http://www.osdever.net/tutorials/)
+- [Bona fide OS Developer](http://www.osdever.net/tutorials/)
+
+________
+###### No penguins were harmed during the development of this kernel
