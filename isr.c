@@ -43,8 +43,17 @@ void init_register_isrs() {
   register_interrupt_handler(5, &print_interrupt_number);
   register_interrupt_handler(6, &print_interrupt_number);
   register_interrupt_handler(7, &print_interrupt_number);
-  register_interrupt_handler(8, &panic);
+  register_interrupt_handler(8, &panic); // double fault
   register_interrupt_handler(9, &print_interrupt_number);
+  register_interrupt_handler(10, &print_interrupt_number);
+  register_interrupt_handler(11, &print_interrupt_number);
+  register_interrupt_handler(12, &print_interrupt_number);
+  register_interrupt_handler(13, &print_interrupt_number);
+  register_interrupt_handler(14, &panic); // page fault
+  register_interrupt_handler(15, &print_interrupt_number);
+  register_interrupt_handler(16, &print_interrupt_number);
+  register_interrupt_handler(17, &print_interrupt_number);
+  register_interrupt_handler(18, &print_interrupt_number);
 }
 
 void print_interrupt_number(registers_t regs) {

@@ -12,6 +12,10 @@ void panic(registers_t regs) {
     puts("Double Fault Exception");
     halt = true;
   }
+  if(regs.int_no == 14) {
+    puts("Page Fault Exception");
+    halt = true;
+  }
     
   puts("Registers Dump:");
   print_string("EAX: ");

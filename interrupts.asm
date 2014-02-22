@@ -80,7 +80,7 @@ isr7:
    push  byte 0           
    push  byte 7           
    jmp   isr_common_stub  
-   [GLOBAL isr8]
+   [GLOBAL isr8]                ; double fault, pushes error code
 isr8:
    cli                    
    push  byte 8           
@@ -90,6 +90,55 @@ isr9:
    cli                    
    push  byte 0           
    push  byte 9           
+   jmp   isr_common_stub  
+   [GLOBAL isr10]
+isr10:
+   cli                    
+   push  byte 10
+   jmp   isr_common_stub  
+   [GLOBAL isr11]
+isr11:
+   cli                    
+   push  byte 11           
+   jmp   isr_common_stub  
+   [GLOBAL isr12]
+isr12:
+   cli                    
+   push  byte 12           
+   jmp   isr_common_stub  
+   [GLOBAL isr13]
+isr13:
+   cli                    
+   push  byte 13           
+   jmp   isr_common_stub  
+   [GLOBAL isr14]               ; page fault, pushes error code
+isr14:
+   cli                    
+   push  byte 14           
+   jmp   isr_common_stub  
+   [GLOBAL isr15]
+isr15:
+   cli                    
+   push  byte 0           
+   push  byte 15           
+   jmp   isr_common_stub  
+   [GLOBAL isr16]
+isr16:
+   cli                    
+   push  byte 0           
+   push  byte 16           
+   jmp   isr_common_stub  
+   [GLOBAL isr17]
+isr17:
+   cli                    
+   push  byte 0           
+   push  byte 17           
+   jmp   isr_common_stub  
+   [GLOBAL isr18]
+isr18:
+   cli                    
+   push  byte 0           
+   push  byte 18           
    jmp   isr_common_stub  
 
 
