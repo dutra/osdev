@@ -9,9 +9,9 @@ LFLAGS = -melf_i386 -T kernel.ld
 all: os-image
 
 run: all
-	qemu-system-i386 -hda os-image -pidfile /tmp/amora_qemu
+	qemu-system-i386 -hda os-image -m 128M -pidfile /tmp/amora_qemu
 run-nox: all
-	qemu-system-i386 -curses -hda os-image -pidfile /tmp/amora_qemu
+	qemu-system-i386 -curses -hda os-image -m 128M -pidfile /tmp/amora_qemu
 kill:
 	cat /tmp/amora_qemu | xargs kill -15
 kill9:

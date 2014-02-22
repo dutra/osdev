@@ -17,4 +17,8 @@ typedef struct page_entry_struct {
 
 void init_paging();
 
+#define PG_PRESENT 0x1
+#define PG_RW 0x2
+#define PG_USER 0x4
+
 #endif /* PAGING_H */

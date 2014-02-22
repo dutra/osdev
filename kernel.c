@@ -9,10 +9,11 @@
 
 void main() {
 
-  char string[10];
+  char string[40];
 
-  char test[10];
-
+  char *test = (char *) 0x0;
+  uint32_t addr = 0x0;
+  
   
   init_idt();
   init_register_isrs();
@@ -30,7 +31,23 @@ void main() {
 
   init_paging();
 
-  print_string(itoa((uint32_t) &test, string, 16));
+
+  test[0] = 'a';
+  test[1] = 'b';
+  test[2] = '\0';
+
+  puts(test);
+  
+  /* print_string(itoa((uint32_t) &test, string, 16)); */
+
+  while(addr < 0xffffffff) {
+    puts(itoa(((uint32_t) addr)/1024/1024, string, 10));
+    string[0] = *test;
+    test += 0x100000;
+    addr += 0x100000;
+  }
+    
+  
 
   
   
