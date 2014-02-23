@@ -1,6 +1,7 @@
 #include <isr.h>
-#include <screen.h>
+#include <stdio.h>
 #include <lib.h>
+#include <screen.h>
 
 void panic(registers_t regs) {
   char number_string[10];

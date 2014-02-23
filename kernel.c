@@ -6,6 +6,7 @@
 #include <keyboard.h>
 #include <isr.h>
 #include <paging.h>
+#include <stdio.h>
 
 void main() {
 
@@ -13,21 +14,31 @@ void main() {
 
   char *test = (char *) 0x0;
   uint32_t addr = 0x0;
+
+  puts(" ");
   
+  printf("ab%dc", 10);
   
   init_idt();
   init_register_isrs();
   
   print_string("\n");
+
+  
   
   asm volatile ("int $0x3");
+  
+  asm volatile ("int $0x2");
+  asm volatile ("int $0x3");
+	
+  while(1);
   /* asm volatile ("int $0x3"); */
-
-  init_keyboard();
+  
+  //  init_keyboard();
   
   //  asm volatile("int $0x8");
   
-  //  init_timer(50);
+  init_timer(50);
 
   init_paging();
 

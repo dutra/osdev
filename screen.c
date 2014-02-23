@@ -2,11 +2,6 @@
 #include <lib.h>
 #include <asm.h>
 
-void puts(char *string) {
-    print_string(string);
-    print_string("\n");
-}
-
 void print_string(char *string) {
   int i=0;
   while(string[i] != 0) {

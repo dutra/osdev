@@ -12,9 +12,7 @@ static __inline__ void write_cr0(uint32_t page_directory);
 void init_paging() {
   page_entry_t *page_directory = (page_entry_t *) PDE_START;
 
-  char string[32];
   page_entry_t *page_table = (page_entry_t *) PTE_START;
-
 
   uint32_t address = 0;
   uint32_t i, j;

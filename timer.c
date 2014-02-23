@@ -3,6 +3,7 @@
 #include <screen.h>
 #include <asm.h>
 #include <lib.h>
+#include <stdio.h>
 
 uint32_t tick = 0;
 

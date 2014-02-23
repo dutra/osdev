@@ -12,7 +12,6 @@
 #define REG_SCREEN_CTRL 0x3D4
 #define REG_SCREEN_DATA 0x3D5
 
-void puts(char *string);
 void print_string(char *string);
 void print_char(char character, int row, int col, char attribute_byte);
 int get_screen_offset(int row, int col);

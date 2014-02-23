@@ -6,10 +6,10 @@ KERNEL_OFFSET_16 equ 0x0
 
 STACK_32 equ 0x3ffff
 KERNEL_OFFSET_32 equ 0x40000    ; We will load the kernel here
-   
+
    mov   [BOOT_DRIVE], dl       ; BIOS stores our boot drive in dl, so let's save it for later use
-   
-   mov   bp, STACK_16             ; set stack
+
+   mov   bp, STACK_16           ; set stack
    mov   sp, bp
 
    mov   bx, MSG_REAL_MODE
@@ -30,17 +30,17 @@ loop:
 
    [bits 16]
 load_kernel:
-   mov bx, MSG_LOAD_KERNEL
-   call print_string
+   mov   bx, MSG_LOAD_KERNEL
+   call  print_string
 
-   mov ax, 0x4000
-   mov es, ax
-   mov bx, KERNEL_OFFSET_16
-   mov dh, 13
-   mov dl, [BOOT_DRIVE]
-   call disk_load
-   ret
-   
+   mov   ax, 0x4000
+   mov   es, ax
+   mov   bx, KERNEL_OFFSET_16
+   mov   dh, 15
+   mov   dl, [BOOT_DRIVE]
+   call  disk_load
+   ret   
+
    [bits 32]
    %include "boot/print_string_pm.asm"
 
@@ -50,7 +50,7 @@ BEGIN_PM:
    call  print_string_pm
 
    call  CODE_SEG:KERNEL_OFFSET_32
-   
+
    jmp   $
 
    ;; Data
