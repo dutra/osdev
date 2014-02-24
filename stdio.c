@@ -43,16 +43,34 @@ static int parser(char *output, const char *input, const char *args[]) {
 
     if(input[ipos] == '%') {
       switch(input[ipos+1]) {
-      case 'd':
+      case 'p': // pointer in hex
+	itoa((int) args[apos++], tmp, 16);
+	for(i=0; tmp[i]; i++)
+	  output[opos+i] = (char) tmp[i];
+	opos+=i-1;
+        break;
+      case 'b': // binary
+	itoa((int) args[apos++], tmp, 2);
+	for(i=0; tmp[i]; i++)
+	  output[opos+i] = (char) tmp[i];
+	opos+=i-1;
+        break;
+      case 'x': // hex
+	itoa((int) args[apos++], tmp, 16);
+	for(i=0; tmp[i]; i++)
+	  output[opos+i] = (char) tmp[i];
+	opos+=i-1;
+        break;
+      case 'd': // decimal
 	itoa((int) args[apos++], tmp, 10);
 	for(i=0; tmp[i]; i++)
 	  output[opos+i] = (char) tmp[i];
 	opos+=i-1;
         break;
-      case 'c':
+      case 'c': // char
         output[opos] = (char) *args[apos++];
         break;
-      case 's':
+      case 's': // string
 	puts("Case s");
 	for(i=0; args[apos][i]; i++)
 	  output[opos+i] = (char) args[apos][i];

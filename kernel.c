@@ -17,7 +17,7 @@ void main() {
 
   puts(" ");
   
-  printf("ab%dc", 10);
+  printf("ab%bc", 0xff);
   
   init_idt();
   init_register_isrs();
